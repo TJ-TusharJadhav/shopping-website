@@ -64,21 +64,49 @@ public class TC_login {
         
     }
 
-//    @When("I click the 'Add to cart' button for the product {string}")
-//    public void iClickTheAddToCartButtonForTheProduct(String productName) {
-//        // Locate and click the "Add to cart" button for the given product
-//    }
-//
-//    @Then("the cart icon should display a badge with {string}")
-//    public void theCartIconShouldDisplayABadgeWith(String cartBadge) {
-//        // Validate the cart badge
-//    }
-//
-//    @Given("I have added {string} to the cart")
-//    public void iHaveAddedToTheCart(String productName) {
-//        // Step to ensure the product is already added to the cart
-//    }
-//
+    @When("I click the Add to cart button for the product")
+    public void iClickTheAddToCartButtonForTheProduct() {
+    	BaseClass.login.Add_to_Cart_Sauce_Labs_Backpack();
+    	
+    	
+      
+    }
+
+    @Then("the cart icon should display a badge with")
+    public void the_cart_icon_should_display_a_badge_with() {
+    	BaseClass.login.check_Total_addTOcart_itams();
+    }
+
+    @Given("I have added to the cart")
+    public void iHaveAddedToTheCart() {
+    	BaseClass.setUp();
+		BaseClass.login.enterLoginEmail("standard_user");
+		BaseClass.login.enterLoginPassword("secret_sauce");
+	    BaseClass.login.clickLoginButton();
+	    BaseClass.login.Add_to_Cart_Sauce_Labs_Backpack();
+    	}
+    @Given("I have added Sauce Labs Backpack to the cart")
+    public void i_have_added_sauce_labs_backpack_to_the_cart() {
+    	BaseClass.setUp();
+		BaseClass.login.enterLoginEmail("standard_user");
+		BaseClass.login.enterLoginPassword("secret_sauce");
+	    BaseClass.login.clickLoginButton();
+	    BaseClass.login.Add_to_Cart_Sauce_Labs_Backpack();
+	    BaseClass.login.check_Total_addTOcart_itams();
+       
+    }
+    @When("I click the Remove button for the product")
+    public void i_click_the_button_for_the_product() {
+    	BaseClass.login.Click_Remove_itam_in_Cart();
+    	
+        
+    }
+    @Then("the cart icon should not display any badge")
+    public void the_cart_icon_should_not_display_any_badge() {
+    	BaseClass.login.check_remove_addTOcart_itams();
+        
+    }
+
 //    @When("I click the 'Remove' button for the product {string}")
 //    public void iClickTheRemoveButtonForTheProduct(String productName) {
 //        // Locate and click the "Remove" button for the product

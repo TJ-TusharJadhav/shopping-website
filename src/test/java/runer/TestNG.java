@@ -7,7 +7,7 @@ import io.cucumber.testng.CucumberOptions;
     features = "./FeatureFile/login.feature",
     glue = "stepdefinitions",               
     plugin = {"pretty","html:target/cucumber-reports.html"}
-    ,tags= "@tag2"
+//    ,tags= "@tag4"
     )
 
 public class TestNG extends AbstractTestNGCucumberTests {
