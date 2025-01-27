@@ -1,32 +1,45 @@
 package testbase;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import locators.Login;
-
-import java.util.concurrent.TimeUnit;
 
 public class BaseClass {
     public static WebDriver driver;
-    public static Login login; 
 
 //    @Before
-    public static void setUp() {
+    public void setUp() {
         driver = new ChromeDriver();
-        driver.manage().window().maximize(); 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
         driver.get("https://www.saucedemo.com/");
-        
-        login = new Login(); 
     }
 
-//    @After
-    public static void tearDown() {
-        if (driver != null) {
-            driver.quit();
+
+   
+//    	@After
+        public void tearDown() {
+            if (driver != null) {
+                try {
+                    // Check if the test failed
+                    String testName = this.getClass().getSimpleName();
+                    ScreenshotUtil.captureScreenshot(driver, testName);
+                } catch (Exception e) {
+                    System.out.println("Error capturing screenshot: " + e.getMessage());
+                } finally {
+                    // Always close the browser
+                    driver.quit();
+                }
+            }
         }
-    }
+    	public static WebDriver getDriver() {
+            return driver;
+        }
+
+	
+    
 }
